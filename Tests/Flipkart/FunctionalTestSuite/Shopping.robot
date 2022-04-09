@@ -1,10 +1,5 @@
 *** Settings ***
-Library  SeleniumLibrary
-
-*** Variables ***
-${search_flipkart}  Flipkart
-${url}  https://www.google.com/
-${search_product}  iphone13
+Resource  ../../../Resources/mykeywords.robot
 
 *** Test Cases ***
 Google search
@@ -25,7 +20,8 @@ Flipkart product search
 Flipkart product selection
     [Documentation]  selecting product
     [Tags]  flipkart
-    click element  xpath=//html/body/div[1]/div/div[3]/div[1]/div[2]/div[2]/div/div/div/a/div[2]/div[1]/div[1]
+    Execute script  window.scroll(0,2200)
+    click element  xpath=//html/body/div[1]/div/div[3]/div[1]/div[2]/div[4]/div/div/div/a/div[2]/div[1]/div[1]
     sleep  2s
 Flipkart product buy
     [Documentation]  product purchase
@@ -42,15 +38,5 @@ Flipkart user login
     sleep  5s
     stop test case
 
-*** Keywords ***
 
-
-start test case
-    Open Browser  ${url}  chrome
-    maximize browser window
-flipkart search
-    Input Text  name:q  ${search_product}
-    click button  class:L0Z3Pu
-stop test case
-    Close Browser
 
